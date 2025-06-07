@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đề Thi Lý Thuyết 3D</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .question {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .question p {
+            margin: 0 0 10px;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #dff0d8;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .timer {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <h1>ĐỀ THI LÝ THUYẾT 3D</h1>
+    <p>Thời gian làm bài: 30 phút | Tổng số câu: 60 | Tổng điểm: 40</p>
+    <p>Hướng dẫn: Chọn đáp án đúng cho mỗi câu hỏi. Nhấn "Nộp bài" khi hoàn thành.</p>
+    <div class="timer" id="timer">Thời gian còn lại: 30:00</div>
+
+    <form id="quizForm">
+        <div class="question">
+            <p><strong>Câu 1.</strong> Thông tin về máy đo 3D là gì?</p>
+            <div class="options">
+                <input type="radio" name="q1" value="a"> A. Máy đo được các kích thước nhỏ và khó phân đoán<br>
+                <input type="radio" name="q1" value="b"> B. Máy đo tọa độ 3 chiều (X, Y, Z)<br>
+                <input type="radio" name="q1" value="c"> C. Máy đo được nhiều sản phẩm cùng lúc<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 2.</strong> Cách điều chỉnh độ sáng khi không nhìn rõ điểm cần bắt trên máy đo 3D là gì?</p>
+            <div class="options">
+                <input type="radio" name="q2" value="a"> A. Dùng tay vận động ống kính máy đo lên xuống<br>
+                <input type="radio" name="q2" value="b"> B. Lắp thêm đèn chiếu sáng tại khu vực máy đo<br>
+                <input type="radio" name="q2" value="c"> C. Điều chỉnh độ sáng bằng phần mềm trên giao diện chương trình đo 3D<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 3.</strong> Cách chuẩn bị trước khi đo mẫu là gì?</p>
+            <div class="options">
+                <input type="radio" name="q3" value="a"> A. Chỉ cần đặt mẫu lên và đo<br>
+                <input type="radio" name="q3" value="b"> B. Đặt mẫu lên máy đo -> cố định mẫu trên bàn máy và đo<br>
+                <input type="radio" name="q3" value="c"> C. Mở phần mềm đo -> Chuẩn bị chương trình đo -> Đặt mẫu cần đo lên bàn máy -> Cố định mẫu -> Tiến hành đo<br>
+                <input type="radio" name="q3" value="d"> D. Mở chương trình đo -> Đặt mẫu lên bàn máy và đo (không cần cố định)<br>
+                <input type="radio" name="q3" value="e"> E. Chuẩn bị mẫu -> Mở phần mềm -> Xác nhận kích thước -> Cài đặt chương trình -> Đặt mẫu -> Cố định mẫu -> Tiến hành đo<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 4.</strong> Cách cài đặt chương trình đo là gì?</p>
+            <div class="options">
+                <input type="radio" name="q4" value="a"> A. Cài đặt chương trình, tọa độ phải giống như bản vẽ quy định<br>
+                <input type="radio" name="q4" value="b"> B. Cài đặt chương trình, tọa độ tự do<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 5.</strong> Cách đo và chọn điểm đo trên máy đo 3D là gì?</p>
+            <div class="options">
+                <input type="radio" name="q5" value="a"> A. Chọn điểm đo trên chương trình và ấn máy đo<br>
+                <input type="radio" name="q5" value="b"> B. Đo lần lượt theo chương trình đã được cài đặt trước<br>
+                <input type="radio" name="q5" value="c"> C. Thích đo điểm nào trước cũng được<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 6.</strong> Máy đo 3D được sử dụng để làm gì?</p>
+            <div class="options">
+                <input type="radio" name="q6" value="a"> A. Để đo được các kích thước nhỏ<br>
+                <input type="radio" name="q6" value="b"> B. Vì độ phóng đại cao để quan sát<br>
+                <input type="radio" name="q6" value="c"> C. Vì các thiết bị 2D khác không đủ khả năng<br>
+                <input type="radio" name="q6" value="d"> D. Vì máy đo 3D là máy đo tọa độ 3 chiều với độ chính xác cao<br>
+                <input type="radio" name="q6" value="e"> E. Cả 4 đáp án trên<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 7.</strong> Sự chênh lệch dung sai giữa máy đo 3D và thiết bị vision ngoài sản xuất khoảng bao nhiêu mm?</p>
+            <div class="options">
+                <input type="radio" name="q7" value="a"> A. Không có sự chênh lệch<br>
+                <input type="radio" name="q7" value="b"> B. 0.01 mm<br>
+                <input type="radio" name="q7" value="c"> C. 0.15 mm<br>
+                <input type="radio" name="q7" value="e"> E. 0.015 mm<br>
+                <input type="radio" name="q7" value="f"> F. 0.02 mm<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 8.</strong> Khi máy đo 3D đo xong, kết quả được lấy ra như thế nào?</p>
+            <div class="options">
+                <input type="radio" name="q8" value="a"> A. Chép tay kết quả ra file Excel hoặc giấy tờ bên ngoài<br>
+                <input type="radio" name="q8" value="b"> B. Copy kết quả ra file Excel<br>
+                <input type="radio" name="q8" value="c"> C. Nhấn nút "Export" trên phần mềm để tải dữ liệu<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 9.</strong> Máy đo 3D có cần hiệu chuẩn định kỳ không?</p>
+            <div class="options">
+                <input type="radio" name="q9" value="a"> A. Có<br>
+                <input type="radio" name="q9" value="b"> B. Không<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 10.</strong> Khi có sản phẩm mới, ai là người cài đặt chương trình đo?</p>
+            <div class="options">
+                <input type="radio" name="q10" value="a"> A. Quản lý người Hàn Quốc bộ phận QC<br>
+                <input type="radio" name="q10" value="b"> B. Quản lý người Hàn Quốc bộ phận phát triển<br>
+                <input type="radio" name="q10" value="c"> C. Phó quản lý QC<br>
+                <input type="radio" name="q10" value="d"> D. Nhân viên vận hành máy đo trực tiếp<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 11.</strong> Máy đo 3D là dạng máy đo có thể?</p>
+            <div class="options">
+                <input type="radio" name="q11" value="a"> A. Đo được toàn bộ các kích thước<br>
+                <input type="radio" name="q11" value="b"> B. Chỉ đo được một số kích thước trên bản vẽ quy định<br>
+                <input type="radio" name="q11" value="c"> C. Đo được toàn bộ kích thước ở 3 chiều (X, Y, Z) với một số ngoại lệ<br>
+                <input type="radio" name="q11" value="d"> D. Cả 3 phương án trên<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 12.</strong> Độ phóng đại cao nhất của máy đo 3D hiện tại là bao nhiêu?</p>
+            <div class="options">
+                <input type="radio" name="q12" value="a"> A. 50X - 99X<br>
+                <input type="radio" name="q12" value="b"> B. 100X<br>
+                <input type="radio" name="q12" value="c"> C. 101X - 290X<br>
+                <input type="radio" name="q12" value="d"> D. Trên 300X<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 13.</strong> Máy đo 3D có thể đo độ nhám bề mặt vật liệu không?</p>
+            <div class="options">
+                <input type="radio" name="q13" value="a"> A. Có nhưng ít sử dụng<br>
+                <input type="radio" name="q13" value="b"> B. Không đo được<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 14.</strong> Tại sao phải cài đặt gốc tọa độ trourse khi cài đặt chương trình đo?</p>
+            <div class="options">
+                <input type="radio" name="q14" value="a"> A. Vì trước đây mọi người đều làm vậy<br>
+                <input type="radio" name="q14" value="b"> B. Vì sếp yêu cầu<br>
+                <input type="radio" name="q14" value="c"> C. Vì bản vẽ yêu cầu<br>
+                <input type="radio" name="q14" value="d"> D. Vì cài đặt gốc tọa độ giúp đo các vị trí mới chính xác hơn<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 15.</strong> Sự khác biệt giữa máy đo 2D và 3D là gì?</p>
+            <div class="options">
+                <input type="radio" name="q15" value="a"> A. Chỉ khác nhau về thiết bị máy đo<br>
+                <input type="radio" name="q15" value="b"> B. Không khác nhau điểm gì<br>
+                <input type="radio" name="q15" value="c"> C. Chỉ khác nhau tên gọi<br>
+                <input type="radio" name="q15" value="d"> D. Máy 3D đo tọa độ 3 chiều (X, Y, Z), máy 2D đo 2 chiều<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 16.</strong> Tên gọi khác của máy đo 3D theo chuẩn quốc tế là gì?</p>
+            <div class="options">
+                <input type="radio" name="q16" value="a"> A. CCM<br>
+                <input type="radio" name="q16" value="b"> B. CMM<br>
+                <input type="radio" name="q16" value="c"> C. Không có tên gọi khác<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 17.</strong> Cách tạo điểm trên 2 đường thẳng giao nhau là gì?</p>
+            <div class="options">
+                <input type="radio" name="q17" value="a"> A. Đo 2 đường thẳng và lấy giao điểm<br>
+                <input type="radio" name="q17" value="b"> B. Đo 2 đường thẳng và nhấp chuột vào điểm bất kỳ<br>
+                <input type="radio" name="q17" value="c"> C. Cả hai cách đều đúng<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 18.</strong> Khi đo tự động cung R cho kết quả sai, cách xử lý là gì?</p>
+            <div class="options">
+                <input type="radio" name="q18" value="a"> A. Đo lại bằng tay và điều chỉnh cách bắt điểm<br>
+                <input type="radio" name="q18" value="b"> B. Bỏ sản phẩm đó đi đo sản phẩm khác<br>
+                <input type="radio" name="q18" value="c"> C. Báo quản lý cấp trên<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 19.</strong> Máy đo 3D có đo được độ sâu dao của sản phẩm không?</p>
+            <div class="options">
+                <input type="radio" name="q19" value="a"> A. Không đo được<br>
+                <input type="radio" name="q19" value="b"> B. Đo được nhưng độ chính xác không cao tùy sản phẩm<br>
+                <input type="radio" name="q19" value="c"> C. Cả hai đều đúng<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 20.</strong> Phải làm gì trước khi sử dụng máy đo 3D?</p>
+            <div class="options">
+                <input type="radio" name="q20" value="a"> A. Không cần làm gì, chỉ cần bật máy<br>
+                <input type="radio" name="q20" value="b"> B. Vệ sinh máy và kiểm tra tình trạng hoạt động<br>
+                <input type="radio" name="q20" value="c"> C. Tất cả đều sai<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 21.</strong> Đơn vị chiều dài thiết bị 3D có thể hiển thị là gì?</p>
+            <div class="options">
+                <input type="radio" name="q21" value="a"> A. Milimet<br>
+                <input type="radio" name="q21" value="b"> B. Centimet<br>
+                <input type="radio" name="q21" value="c"> C. Inch<br>
+                <input type="radio" name="q21" value="d"> D. Mét<br>
+                <input type="radio" name="q21" value="e"> E. Milimet và Inch<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 22.</strong> Khi gặp trục trặc, có cần đưa máy đo 3D về điểm gốc không?</p>
+            <div class="options">
+                <input type="radio" name="q22" value="a"> A. Không cần vì đường nào cũng lấy điểm gốc từ sản phẩm<br>
+                <input type="radio" name="q22" value="b"> B. Phải đưa máy về điểm gốc để đo chính xác hơn<br>
+                <input type="radio" name="q22" value="c"> C. Tất cả đều sai<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 23.</strong> Giao điểm giữa 2 mặt phẳng sẽ tạo thành?</p>
+            <div class="options">
+                <input type="radio" name="q23" value="a"> A. Một mặt phẳng thứ 3<br>
+                <input type="radio" name="q23" value="b"> B. Một điểm<br>
+                <input type="radio" name="q23" value="c"> C. Một đường thẳng<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 24.</strong> Giao điểm giữa 3 mặt phẳng sẽ tạo thành?</p>
+            <div class="options">
+                <input type="radio" name="q24" value="a"> A. Một mặt phẳng thứ 3<br>
+                <input type="radio" name="q24" value="b"> B. Một điểm<br>
+                <input type="radio" name="q24" value="c"> C. Một đường thẳng<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 25.</strong> Muốn đặt dung sai cho phép đo, sử dụng phím nào?</p>
+            <div class="options">
+                <input type="radio" name="q25" value="a"> A. F1<br>
+                <input type="radio" name="q25" value="b"> B. F2<br>
+                <input type="radio" name="q25" value="c"> C. F3<br>
+                <input type="radio" name="q25" value="d"> D. F4<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 26.</strong> Định dạng tệp data mặc định của chương trình đo 3D là gì?</p>
+            <div class="options">
+                <input type="radio" name="q26" value="a"> A. Iwp<br>
+                <input type="radio" name="q26" value="b"> B. Dwf<br>
+                <input type="radio" name="q26" value="c"> C. Dwg<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 27.</strong> Muốn sửa tên, sử dụng phím nào?</p>
+            <div class="options">
+                <input type="radio" name="q27" value="a"> A. F1<br>
+                <input type="radio" name="q27" value="b"> B. F2<br>
+                <input type="radio" name="q27" value="c"> C. F3<br>
+                <input type="radio" name="q27" value="d"> D. F4<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 28.</strong> Muốn chọn kết quả theo phương, sử dụng phím nào?</p>
+            <div class="options">
+                <input type="radio" name="q28" value="a"> A. F1<br>
+                <input type="radio" name="q28" value="b"> B. F2<br>
+                <input type="radio" name="q28" value="c"> C. F3<br>
+                <input type="radio" name="q28" value="d"> D. F4<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 29.</strong> Kết quả đo hiển thị ở mục nào?</p>
+            <div class="options">
+                <input type="radio" name="q29" value="a"> A. Summary<br>
+                <input type="radio" name="q29" value="b"> B. Log<br>
+                <input type="radio" name="q29" value="c"> C. Export<br>
+                <input type="radio" name="q29" value="d"> D. Import<br>
+                <input type="radio" name="q29" value="e"> E. Sumary<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 30.</strong> Muốn lưu và thiết lập file kết quả gốc vừa tạo, chọn mục nào đầu tiên?</p>
+            <div class="options">
+                <input type="radio" name="q30" value="a"> A. Program setting<br>
+                <input type="radio" name="q30" value="b"> B. Digital setting<br>
+                <input type="radio" name="q30" value="c"> C. New program defaults<br>
+                <input type="radio" name="q30" value="d"> D. Other (Playback Options)<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 31.</strong> Muốn trích xuất kết quả hàng ngang, chọn?</p>
+            <div class="options">
+                <input type="radio" name="q31" value="a"> A. Comma / Comma<br>
+                <input type="radio" name="q31" value="b"> B. Tab / New line<br>
+                <input type="radio" name="q31" value="c"> C. Comma / New line<br>
+                <input type="radio" name="q31" value="d"> D. New line / New line<br>
+                <input type="radio" name="q31" value="e"> E. Tất cả đều trích xuất được<br>
+                <input type="radio" name="q31" value="f"> F. Tất cả đều không trích xuất được<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 32.</strong> Định dạng mặc định của file kết quả đo 3D là gì?</p>
+            <div class="options">
+                <input type="radio" name="q32" value="a"> A. txt<br>
+                <input type="radio" name="q32" value="b"> B. Iwp<br>
+                <input type="radio" name="q32" value="c"> C. Exl<br>
+                <input type="radio" name="q32" value="d"> D. Jpg<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 33.</strong> Khi chiều cao sản phẩm gần với ống kính 3D, làm thế nào để lấy nét?</p>
+            <div class="options">
+                <input type="radio" name="q33" value="a"> A. Cho máy lấy nét tự động<br>
+                <input type="radio" name="q33" value="b"> B. Bỏ sản phẩm đó ra, dùng sản phẩm thấp hơn<br>
+                <input type="radio" name="q33" value="c"> C. Sử dụng tay điều chỉnh ống kính thủ công<br>
+                <input type="radio" name="q33" value="d"> D. Tất cả đều sai<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 34.</strong> Nút dừng khẩn cấp trên máy đo 3D được sử dụng khi nào?</p>
+            <div class="options">
+                <input type="radio" name="q34" value="a"> A. Hết giờ làm việc<br>
+                <input type="radio" name="q34" value="b"> B. Khi tạm thời không đo sản phẩm nào nữa<br>
+                <input type="radio" name="q34" value="c"> C. Khi gặp sự cố máy cần dừng khẩn cấp<br>
+                <input type="radio" name="q34" value="d"> D. Tất cả đều sai<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 35.</strong> Phần mềm dùng để chuyển đổi kết quả đo sang Excel là gì?</p>
+            <div class="options">
+                <input type="radio" name="q35" value="a"> A. Komes<br>
+                <input type="radio" name="q35" value="b"> B. Wizard<br>
+                <input type="radio" name="q35" value="c"> C. Komes 3D<br>
+                <input type="radio" name="q35" value="d"> D. Wizard komes<br>
+                <input type="radio" name="q35" value="e"> E. Komes Wizard<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 36.</strong> Với công nhân mới, có cần đào tạo khi tuyển vào đo 3D không?</p>
+            <div class="options">
+                <input type="radio" name="q36" value="a"> A. Tự công nhân tìm hiểu và làm<br>
+                <input type="radio" name="q36" value="b"> B. Quản lý cấp cao nhất sẽ đào tạo<br>
+                <input type="radio" name="q36" value="c"> C. Nhân viên cũ sẽ đào tạo nhân viên mới<br>
+                <input type="radio" name="q36" value="d"> D. Tất cả đều không dùng<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 37.</strong> Muốn hiện điểm đo bị bắt sai, vào mục nào?</p>
+            <div class="options">
+                <input type="radio" name="q37" value="a"> A. Không có chức năng đó<br>
+                <input type="radio" name="q37" value="b"> B. Measure to Failed<br>
+                <input type="radio" name="q37" value="c"> C. Failed to Measure<br>
+                <input type="radio" name="q37" value="d"> D. Other<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 38.</strong> Phần mềm đo 3D hiển thị trên màn hình máy tính là gì?</p>
+            <div class="options">
+                <input type="radio" name="q38" value="a"> A. InSpaction Window<br>
+                <input type="radio" name="q38" value="b"> B. InSpoc<br>
+                <input type="radio" name="q38" value="c"> C. Window Inspection<br>
+                <input type="radio" name="q38" value="d"> D. InSpoc Window<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 39.</strong> Các bước chuyển dữ liệu đo sang Excel (từ txt sang komes wizard) là gì?</p>
+            <div class="options">
+                <input type="radio" name="q39" value="a"> A. Import -> Sửa tên -> Chọn định dạng Excel -> Save<br>
+                <input type="radio" name="q39" value="b"> B. Chỉ cần nhấn Import<br>
+                <input type="radio" name="q39" value="c"> C. Chỉ cần nhấn Export<br>
+                <input type="radio" name="q39" value="d"> D. Export -> Sửa tên -> Chọn định dạng Excel -> Save<br>
+                <input type="radio" name="q39" value="e"> E. Other<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 40.</strong> Ký hiệu khi các kích thước đo đã OK là gì?</p>
+            <div class="options">
+                <input type="radio" name="q40" value="a"> A. ✔<br>
+                <input type="radio" name="q40" value="b"> B. Complete<br>
+                <input type="radio" name="q40" value="c"> C. Done<br>
+                <input type="radio" name="q40" value="d"> D. ✓<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 41.</strong> Có bao nhiêu cách di chuyển thấu kính, bàn đo?</p>
+            <div class="options">
+                <input type="radio" name="q41" value="a"> A. 1<br>
+                <input type="radio" name="q41" value="b"> B. 2 (di chuyển bằng tay và bằng chuột)<br>
+                <input type="radio" name="q41" value="c"> C. 3<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 42.</strong> Muốn vẽ đường thẳng cần đo, cần chọn?</p>
+            <div class="options">
+                <input type="radio" name="q42" value="a"> A. Chọn Line -> F-Scan line<br>
+                <input type="radio" name="q42" value="b"> B. Chọn Line -> First Edge<br>
+                <input type="radio" name="q42" value="c"> C. Chọn Line -> Closest Edge<br>
+                <input type="radio" name="q42" value="d"> D. Chọn Line -> Manual Point<br>
+                <input type="radio" name="q42" value="e"> E. Other<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 43.</strong> Máy đo 3D hiện đang sử dụng cách bắt điểm bằng?</p>
+            <div class="options">
+                <input type="radio" name="q43" value="a"> A. Cảm biến ánh sáng trên ống kính<br>
+                <input type="radio" name="q43" value="b"> B. Hình ảnh mà ống kính nhận diện được<br>
+                <input type="radio" name="q43" value="c"> C. Cảm biến nhiệt khi sản phẩm đi qua<br>
+                <input type="radio" name="q43" value="d"> D. Khác<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 44.</strong> Khi đo góc R, cần bắt bao nhiêu điểm để có độ chính xác cao?</p>
+            <div class="options">
+                <input type="radio" name="q44" value="a"> A. 1<br>
+                <input type="radio" name="q44" value="b"> B. 2<br>
+                <input type="radio" name="q44" value="c"> C. 3<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 45.</strong> Khi đo đường tròn, cần bắt bao nhiêu điểm để có độ chính xác cao?</p>
+            <div class="options">
+                <input type="radio" name="q45" value="a"> A. 1<br>
+                <input type="radio" name="q45" value="b"> B. 2<br>
+                <input type="radio" name="q45" value="c"> C. 3<br>
+                <input type="radio" name="q45" value="d"> D. 4 điểm trở lên<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 46.</strong> Máy đo 3D có thể tự tính CPK không?</p>
+            <div class="options">
+                <input type="radio" name="q46" value="a"> A. Có thể<br>
+                <input type="radio" name="q46" value="b"> B. Không thể<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 47.</strong> Máy 3D bạn đang sử dụng là của hãng nào?</p>
+            <div class="options">
+                <input type="radio" name="q47" value="a"> A. Mitutoyo<br>
+                <input type="radio" name="q47" value="b"> B. Keyence<br>
+                <input type="radio" name="q47" value="c"> C. Nikon<br>
+                <input type="radio" name="q47" value="d"> D. Micro Vu<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 48.</strong> Muốn di chuyển về điểm đã đo trước đó, làm gì?</p>
+            <div class="options">
+                <input type="radio" name="q48" value="a"> A. Nhấn Come Back<br>
+                <input type="radio" name="q48" value="b"> B. Nhấn chuột trái chọn Move here<br>
+                <input type="radio" name="q48" value="c"> C. Nhấn chuột phải chọn Move here<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 49.</strong> Có thể đặt dung sai kích thước cho những kích thước giống nhau cùng lúc không?</p>
+            <div class="options">
+                <input type="radio" name="q49" value="a"> A. Được<br>
+                <input type="radio" name="q49" value="b"> B. Không được<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 50.</strong> Có thể chọn kích thước theo phương X, Y, Z cho nhiều kích thước cùng phương không?</p>
+            <div class="options">
+                <input type="radio" name="q50" value="a"> A. Được<br>
+                <input type="radio" name="q50" value="b"> B. Không được<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 51.</strong> Có thể đặt tên các kích thước giống nhau trên chương trình đo 3D không?</p>
+            <div class="options">
+                <input type="radio" name="q51" value="a"> A. Được<br>
+                <input type="radio" name="q51" value="b"> B. Không được<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 52.</strong> Trên chương trình đo 3D, có thể sử dụng nhiều độ Zoom, độ sáng khác nhau cho từng điểm không?</p>
+            <div class="options">
+                <input type="radio" name="q52" value="a"> A. Được<br>
+                <input type="radio" name="q52" value="b"> B. Không được<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 53.</strong> Muốn di chuyển chuột sang vị trí khác một khoảng, làm gì?</p>
+            <div class="options">
+                <input type="radio" name="q53" value="a"> A. Nhấn chuột phải chọn Next to<br>
+                <input type="radio" name="q53" value="b"> B. Nhấn chuột trái chọn Next to<br>
+                <input type="radio" name="q53" value="c"> C. Nhấn chuột phải chọn Move to<br>
+                <input type="radio" name="q53" value="d"> D. Nhấn chuột trái chọn Move to<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 54.</strong> Trên bộ điều khiển bảng tay của máy đo 3D có nút di chuyển nhanh không?</p>
+            <div class="options">
+                <input type="radio" name="q54" value="a"> A. Có<br>
+                <input type="radio" name="q54" value="b"> B. Không<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 55.</strong> Có thể sao chép nhiều chương trình đo giống nhau để đo tự động nhiều sản phẩm không?</p>
+            <div class="options">
+                <input type="radio" name="q55" value="a"> A. Có thể<br>
+                <input type="radio" name="q55" value="b"> B. Không thể<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 56.</strong> Chương trình đo 3D khi chuyển sang máy tính khác có xem được không?</p>
+            <div class="options">
+                <input type="radio" name="q56" value="a"> A. Có thể<br>
+                <input type="radio" name="q56" value="b"> B. Không thể<br>
+                <input type="radio" name="q56" value="c"> C. Có thể xem nếu máy có phần mềm đo 3D hoặc định dạng file tương thích<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 57.</strong> Khi chọn gốc tọa độ sản phẩm để đo, chọn từ đâu?</p>
+            <div class="options">
+                <input type="radio" name="q57" value="a"> A. Tự chọn 1 điểm bất kỳ<br>
+                <input type="radio" name="q57" value="b"> B. Chọn theo bản vẽ quy định<br>
+                <input type="radio" name="q57" value="c"> C. Khác<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 58.</strong> Độ sáng trên chương trình đo 3D được quy định bằng đơn vị nào?</p>
+            <div class="options">
+                <input type="radio" name="q58" value="a"> A. %<br>
+                <input type="radio" name="q58" value="b"> B. Lux<br>
+                <input type="radio" name="q58" value="c"> C. Không có đơn vị<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 59.</strong> Độ phân giải trên máy đo 3D được quy định bằng đơn vị X, X nghĩa là gì?</p>
+            <div class="options">
+                <input type="radio" name="q59" value="a"> A. Đơn vị phóng đại của máy so với sản phẩm<br>
+                <input type="radio" name="q59" value="b"> B. Đơn vị ngẫu nhiên không có ý nghĩa<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p><strong>Câu 60.</strong> Máy 3D bạn đang sử dụng có hiệu chuẩn không và thời gian hiệu chuẩn là bao lâu?</p>
+            <div class="options">
+                <input type="radio" name="q60" value="a"> A. Không bao giờ hiệu chuẩn<br>
+                <input type="radio" name="q60" value="b"> B. 6 tháng hiệu chuẩn 1 lần<br>
+                <input type="radio" name="q60" value="c"> C. 12 tháng hiệu chuẩn 1 lần<br>
+                <input type="radio" name="q60" value="d"> D. 24 tháng hiệu chuẩn 1 lần<br>
+            </div>
+        </div>
+
+        <button type="submit">Nộp bài</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        // Đáp án đúng cho 60 câu hỏi (dựa trên danh sách bạn cung cấp)
+        const correctAnswers = {
+            q1: 'b', q2: 'c', q3: 'e', q4: 'b', q5: 'b', q6: 'd', q7: 'f', q8: 'c', q9: 'a', q10: 'd',
+            q11: 'c', q12: 'd', q13: 'b', q14: 'd', q15: 'd', q16: 'b', q17: 'a', q18: 'a', q19: 'b', q20: 'b',
+            q21: 'e', q22: 'b', q23: 'c', q24: 'b', q25: 'c', q26: 'a', q27: 'b', q28: 'b', q29: 'a', q30: 'd',
+            q31: 'e', q32: 'a', q33: 'c', q34: 'c', q35: 'e', q36: 'c', q37: 'c', q38: 'd', q39: 'd', q40: 'a',
+            q41: 'b', q42: 'd', q43: 'b', q44: 'c', q45: 'd', q46: 'a', q47: 'd', q48: 'c', q49: 'a', q50: 'a',
+            q51: 'b', q52: 'b', q53: 'c', q54: 'a', q55: 'a', q56: 'c', q57: 'b', q58: 'a', q59: 'a', q60: 'c'
+        };
+
+        // Hàm đếm thời gian
+        let timeLeft = 30 * 60; // 30 phút tính bằng giây
+        const timerDisplay = document.getElementById('timer');
+        const timer = setInterval(() => {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            timerDisplay.textContent = `Thời gian còn lại: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                document.getElementById('quizForm').submit();
+            }
+            timeLeft--;
+        }, 1000);
+
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let score = 0;
+            const totalQuestions = 60;
+            const totalPoints = 40; // Tổng điểm tối đa theo tài liệu
+            const resultDiv = document.getElementById('result');
+            clearInterval(timer); // Dừng timer khi nộp bài
+
+            // Kiểm tra từng câu hỏi
+            for (let q in correctAnswers) {
+                const selectedOption = document.querySelector(`input[name="${q}"]:checked`);
+                if (selectedOption && selectedOption.value === correctAnswers[q]) {
+                    score += 0.6667; // Mỗi câu đúng được khoảng 0.6667 điểm (40/60)
+                }
+            }
+
+            // Làm tròn điểm để phù hợp với thang điểm (39-40, 37-38, 35-36, <35)
+            score = Math.round(score * 10) / 10; // Làm tròn đến 1 chữ số thập phân
+
+            // Hiển thị kết quả
+            let resultMessage = `Bạn đã hoàn thành bài thi!<br>Số điểm: ${score}/${totalPoints} (${(score / totalPoints * 100).toFixed(1)}%)<br>`;
+            let level = '';
+            if (score >= 39) level = 'A (39-40 điểm)';
+            else if (score >= 37) level = 'B (37-38 điểm)';
+            else if (score >= 35) level = 'C (35-36 điểm)';
+            else level = 'D (<35 điểm)';
+            resultMessage += `Cấp độ: ${level}`;
+
+            resultDiv.innerHTML = resultMessage;
+            resultDiv.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
