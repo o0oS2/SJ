@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đề Thi Lý Thuyết 3D</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .timer {
+            text-align: center;
+            font-size: 24px;
+            color: red;
+            margin-bottom: 20px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+<h1>ĐỀ THI LÝ THUYẾT KỸ THUẬT VIÊN 3D</h1>
+<div class="timer" id="countdown">Thời gian còn lại: 15:00</div>
+
+<form id="quizForm">
+
+<!-- Các câu hỏi sẽ được chèn ở đây -->
+<script>
+const answers = {
+    "1": "B",
+    "2": "C",
+    "3": "E",
+    "4": "B",
+    "5": "B",
+    "6": "D",
+    "7": "F",
+    "8": "C",
+    "9": "A",
+    "10": "D",
+    "11": "C",
+    "12": "D",
+    "13": "B",
+    "14": "D",
+    "15": "D",
+    "16": "B",
+    "17": "A",
+    "18": "A",
+    "19": "B",
+    "20": "B",
+    "21": "E",
+    "22": "B",
+    "23": "C",
+    "24": "B",
+    "25": "C",
+    "26": "A",
+    "27": "B",
+    "28": "B",
+    "29": "A",
+    "30": "D",
+    "31": "E",
+    "32": "A",
+    "33": "C",
+    "34": "C",
+    "35": "E",
+    "36": "C",
+    "37": "C",
+    "38": "D",
+    "39": "D",
+    "40": "A",
+    "41": "B",
+    "42": "D",
+    "43": "B",
+    "44": "C",
+    "45": "D",
+    "46": "A",
+    "47": "D",
+    "48": "C",
+    "49": "A",
+    "50": "A",
+    "51": "B",
+    "52": "B",
+    "53": "C",
+    "54": "A",
+    "55": "A",
+    "56": "C",
+    "57": "B",
+    "58": "A",
+    "59": "A",
+    "60": "C"
+};
+
+const questions = [
+    {
+        "no": 1,
+        "text": "Máy đo 3D là dạng máy đo tọa độ 3 chiều (X, Y, Z).",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 2,
+        "text": "Cách điều chỉnh độ sáng khi không nhìn rõ điểm cần bắt trên máy đo 3D.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 3,
+        "text": "Cách chuẩn bị trước khi đo mẫu.",
+        "options": ["A", "B", "C", "D", "E"]
+    },
+    {
+        "no": 4,
+        "text": "Cài đặt chương trình, tọa độ phải giống như bản vẽ quy định.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 5,
+        "text": "Đo lần lượt theo chương trình đã được cài đặt trước đó.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 6,
+        "text": "Vì máy đo 3D là máy đo tọa độ 3 chiều có độ chính xác cao.",
+        "options": ["A", "B", "C", "D", "E"]
+    },
+    {
+        "no": 7,
+        "text": "Chênh lệch dung sai giữa máy đo 3D và vision ngoài sản xuất khoảng 0.02 mm.",
+        "options": ["A", "B", "C", "D", "E", "F"]
+    },
+    {
+        "no": 8,
+        "text": "Ấn nút load dữ liệu (Export) tự động trên chương trình đo 3D để tải về máy.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 9,
+        "text": "Máy đo 3D có được hiệu chuẩn định kỳ không?",
+        "options": ["A", "B"]
+    },
+    {
+        "no": 10,
+        "text": "Nhân viên vận hành trực tiếp máy đo là người cài và nếu khó khăn mới cần sự trợ giúp từ quản lý cấp trên hoặc bộ phận liên quan.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 11,
+        "text": "Đo được toàn bộ các kích thước ở 3 chiều (X, Y, Z). Và chỉ ở một số kích thước ngoại lệ không bắt được điểm mới không đo được.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 12,
+        "text": "Trên 300X.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 13,
+        "text": "Không đo được.",
+        "options": ["A", "B"]
+    },
+    {
+        "no": 14,
+        "text": "Vì khi cài điểm gốc tọa độ trước thì khi lấy điểm đo ở các vị trí mới chính xác.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 15,
+        "text": "Máy 3D là máy đo tọa độ 3 chiều (X, Y, Z). Còn máy đo 2D là máy đo 2 chiều.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 16,
+        "text": "CMM.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 17,
+        "text": "Đo 2 đường thẳng (dạng line) và lấy giao điểm của 2 đường thẳng đó tạo thành 1 điểm.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 18,
+        "text": "Đo lại bằng tay (thủ công) và điều chỉnh lại cách bắt điểm trên cung R.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 19,
+        "text": "Đo được nhưng tùy vào từng sản phẩm và khi đo độ chính xác không cao.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 20,
+        "text": "Vệ sinh 3D5S máy và kiểm tra tình trạng hoạt động của máy trước khi sử dụng.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 21,
+        "text": "Milimet và inch.",
+        "options": ["A", "B", "C", "D", "E"]
+    },
+    {
+        "no": 22,
+        "text": "Phải đưa máy về điểm gốc, để máy khi đo di chuyển các trục cho dễ dàng và đo còn chính xác.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 23,
+        "text": "Tạo thành 1 đường thẳng.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 24,
+        "text": "Tạo thành 1 điểm.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 25,
+        "text": "F3.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 26,
+        "text": "Iwp.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 27,
+        "text": "F2.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 28,
+        "text": "F2.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 29,
+        "text": "Summary.",
+        "options": ["A", "B", "C", "D", "E"]
+    },
+    {
+        "no": 30,
+        "text": "Other (Playback Options...).",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 31,
+        "text": "Tất cả các ý trên đều trích xuất được kết quả ra hàng ngang.",
+        "options": ["A", "B", "C", "D", "E", "F"]
+    },
+    {
+        "no": 32,
+        "text": ".txt.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 33,
+        "text": "Sử dụng tay điều chỉnh ống kính thủ công.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 34,
+        "text": "Khi gặp các sự cố về máy cần dừng khẩn cấp.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 35,
+        "text": "Komes Wizard.",
+        "options": ["A", "B", "C", "D", "E"]
+    },
+    {
+        "no": 36,
+        "text": "Nhân viên cũ sẽ đào tạo nhân viên mới.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 37,
+        "text": "Failed to Measure.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 38,
+        "text": "InSpec Window.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 39,
+        "text": "Export -> sửa tên -> chọn định dạng Excel -> save.",
+        "options": ["A", "B", "C", "D", "E"]
+    },
+    {
+        "no": 40,
+        "text": "",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 41,
+        "text": "2: di chuyển bằng tay và di chuyển bằng chuột.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 42,
+        "text": "Chọn Line -> Manual Point.",
+        "options": ["A", "B", "C", "D", "E"]
+    },
+    {
+        "no": 43,
+        "text": "Hình ảnh mà ống kính nhận diện được.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 44,
+        "text": "3.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 45,
+        "text": "4 điểm trở lên.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 46,
+        "text": "Có thể.",
+        "options": ["A", "B"]
+    },
+    {
+        "no": 47,
+        "text": "Micro Vu.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 48,
+        "text": "Ấn chuột phải chọn Move here.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 49,
+        "text": "Được.",
+        "options": ["A", "B"]
+    },
+    {
+        "no": 50,
+        "text": "Được.",
+        "options": ["A", "B"]
+    },
+    {
+        "no": 51,
+        "text": "Không được.",
+        "options": ["A", "B"]
+    },
+    {
+        "no": 52,
+        "text": "Không được.",
+        "options": ["A", "B"]
+    },
+    {
+        "no": 53,
+        "text": "Ấn chuột phải chọn Move to.",
+        "options": ["A", "B", "C", "D"]
+    },
+    {
+        "no": 54,
+        "text": "Có.",
+        "options": ["A", "B"]
+    },
+    {
+        "no": 55,
+        "text": "Có thể.",
+        "options": ["A", "B"]
+    },
+    {
+        "no": 56,
+        "text": "Có thể xem, nếu máy đó được cài phần mềm đo 3D hoặc có định dạng file tương thích với file chương trình đo.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 57,
+        "text": "Chọn theo bản vẽ quy định.",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 58,
+        "text": "%",
+        "options": ["A", "B", "C"]
+    },
+    {
+        "no": 59,
+        "text": "X đơn vị phóng đại của máy so với sản phẩm.",
+        "options": ["A", "B"]
+    },
+    {
+        "no": 60,
+        "text": "12 tháng hiệu chuẩn 1 lần.",
+        "options": ["A", "B", "C", "D"]
+    }
+];
+
+questions.forEach(q => {
+    let html = `<div class="question"><strong>Câu ${q.no}. ${q.text}</strong><br>`;
+    q.options.forEach(opt => {
+        html += `
+            <input type="radio" name="q${q.no}" value="${opt}"> ${opt}
+        `;
+    });
+    html += "</div>";
+    document.write(html);
+});
+
+// Đếm ngược thời gian
+(function startTimer(duration) {
+    let timer = duration, minutes, seconds;
+    const display = document.getElementById("countdown");
+    setInterval(() => {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = "Thời gian còn lại: " + minutes + ":" + seconds;
+        if (--timer < 0) {
+            alert("Hết giờ làm bài!");
+            document.getElementById("quizForm").submit.disabled = true;
+        }
+    }, 1000);
+})(15 * 60); // 15 phút
+
+function gradeQuiz() {
+    let score = 0;
+    for (let i = 1; i <= 60; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === answers[i]) {
+            score++;
+        }
+    }
+    alert("Bạn đạt " + score + "/60 điểm.");
+}
+
+</script>
+
+<button onclick="gradeQuiz()" type="button">Chấm điểm</button>
+
+</form>
+
+</body>
+</html>
